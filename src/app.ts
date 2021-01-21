@@ -15,4 +15,6 @@ try {
 } finally {
   const executionTime = new Date().getMilliseconds() - start;
   console.log("Execution time was: %dms", executionTime);
+  const memoryUsage = process.memoryUsage().heapUsed / 1024 / 1024;
+  console.log("Memory usage: %d MB", memoryUsage.toFixed(2));
 }
