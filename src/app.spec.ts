@@ -1,8 +1,13 @@
 import { MergeIntervals } from "./merge-intervals";
+import each from "jest-each";
 
-describe("My Test Suite", () => {
-  it("My Test Case", () => {
-    const input = [
+const testData = [
+  [[], []],
+  [null, null],
+  [undefined, undefined],
+  [["test"], ["test"]],
+  [
+    [
       [25, 30],
       [2, 19],
       [14, 23],
@@ -14,14 +19,30 @@ describe("My Test Suite", () => {
       [1, 2],
       [2, 3],
       [3, 4],
-    ];
-    const expected = [
+    ],
+    [
       [1, 23],
       [24, 31],
       [34, 39],
       [40, 50],
-    ];
+    ],
+  ],
+  [
+    [
+      [25, 30],
+      [2, 19],
+      [14, 23],
+      [4, 8],
+    ],
+    [
+      [2, 23],
+      [25, 30],
+    ],
+  ],
+];
 
+describe("MergeIntervals", () => {
+  each(testData).it("should merge intervals", (input, expected) => {
     const merge = new MergeIntervals();
     let mergedInterval = merge.merge(input);
 

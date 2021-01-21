@@ -1,8 +1,10 @@
 export class MergeIntervals {
-  public merge(intervals: any[]): Array<Array<number>> {
+  public merge(intervals: number[][]): number[][] {
+    if (!intervals?.length) return intervals;
+
     // sort all intervals so they can be iterated sequentially
     const sortedIntervals = this.getSortedIntervals(intervals);
-    let result: Array<Array<number>> = [];
+    let result: number[][] = [];
 
     // combine overlapping intervals
     const remainingInterval = this.reduceIntervals(sortedIntervals, result);
@@ -18,8 +20,8 @@ export class MergeIntervals {
   }
 
   private reduceIntervals(
-    sortedIntervals: Array<Array<number>>,
-    result: Array<Array<number>>
+    sortedIntervals: number[][],
+    result: number[][]
   ): number[] {
     return sortedIntervals.reduce((prev: number[], current: number[]) => {
       const prevFirst = prev[0];
@@ -51,9 +53,7 @@ export class MergeIntervals {
     });
   }
 
-  private getSortedIntervals(
-    intervals: Array<Array<number>>
-  ): Array<Array<number>> {
+  private getSortedIntervals(intervals: number[][]): number[][] {
     return intervals.sort((a: number[], b: number[]) => a[0] - b[0]);
   }
 

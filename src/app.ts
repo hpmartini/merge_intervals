@@ -1,9 +1,14 @@
 import { MergeIntervals } from "./merge-intervals";
 
-const parameters = process.argv.slice(2);
-const intervalsAsJson = JSON.parse(parameters[0]);
+const args = process.argv.slice(2);
 
-console.log("Arguments are:", intervalsAsJson);
+try {
+  const intervalsAsJson = JSON.parse(args[0]);
 
-const merge = new MergeIntervals();
-merge.merge(intervalsAsJson);
+  console.log("Arguments are:", intervalsAsJson);
+
+  new MergeIntervals().merge(intervalsAsJson);
+} catch (error) {
+  console.log("Error parsing arguments:", args);
+  console.log(error);
+}
